@@ -1,4 +1,4 @@
 #!/usr/bin/python3
 for Y in range(97, 123):
-    if chr(Y) is not 'q' and chr(Y) is not 'e':
+    if (Y != 113 and Y != 101):
         print("{}".format(chr(Y)), end="")
