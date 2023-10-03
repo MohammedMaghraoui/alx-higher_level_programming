@@ -1,3 +1,6 @@
 #!/usr/bin/python3
 for Y in range(100):
-    print("{} = {}".format(Y, hex(Y)), end="\n")
+    if i < 99
+        print("{:02d}, ".format(i), end="")
+    else:    
+        print("{:02d} ".format(i))
