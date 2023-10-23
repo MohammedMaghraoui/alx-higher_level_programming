@@ -19,12 +19,33 @@ void print_python_list(PyObject *p) {
         printf("Element %ld: %s\n", i, Py_TYPE(item)->tp_name);
     }
 }
+void print_python_bytes(PyObject *p) {
+    if (!PyBytes_Check(p)) {
+        fprintf(stderr, "[ERROR] Invalid Bytes Object\n");
+        return;
+    }
 
-int main() {
-    // Example usage:
-    Py_Initialize();
-    PyObject *list = PyList_New(5);
-    print_python_list(list);
-    Py_Finalize();
-    return 0;
+    Py_ssize_t size = PyBytes_Size(p);
+    const char *str = PyBytes_AsString(p);
+
+    printf("[.] bytes object info\n");
+    printf("  size: %ld\n", size);
+    printf("  trying string: %s\n", str);
+
+    printf("  first 10 bytes: ");
+    for (Py_ssize_t i = 0; i < size && i < 10; i++) {
+        printf("%02x ", (unsigned char)str[i]);
+    }
+    printf("\n");
+}
+void print_python_float(PyObject *p) {
+    if (!PyFloat_Check(p)) {
+        fprintf(stderr, "[ERROR] Invalid Float Object\n");
+        return;
+    }
+
+    double value = PyFloat_AS_DOUBLE(p);
+
+    printf("[.] float object info\n");
+    printf("  value: %f\n", value);
 }
